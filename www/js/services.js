@@ -97,6 +97,25 @@ angular.module('starter.services', [])
 .factory('Topics', ['$q', 'SERVER_URL', function ($q, SERVER_URL) {  
 
   var returnObj = {
+    getTopicsSpecial: function() {
+      var d = $q.defer();
+      $.ajax({
+        url: SERVER_URL + "/topic/queryAllTopicsSpecial",
+        data: {
+          
+        },
+        dataType: "json",
+        type: "POST"
+      })
+      .then(function(res) {
+        if (res.code === 200) {
+          d.resolve(res.data.slice(0, 100));
+        } else {
+          d.reject();
+        }
+      });
+      return d.promise;
+    },
     getTopics: function(myLocation) {
       console.log('xxxx' + myLocation);
       var d = $q.defer();
