@@ -1,0 +1,49 @@
+<ion-modal-view id="modal_addTopic">
+  
+  <ion-header-bar class="bar-secondary myHeader">
+    <h1 class="title"></h1>
+
+ <!--    <button class="button button-clear button-stable　myButton" ng-click="closeNewTopic()">
+      <i class="icon ion-close"></i>
+    </button> -->
+    <!-- <div class="closeTopicButton" ng-click="closeNewTopic()"></div> -->
+    
+    <div class="newCloseTopicButton" ng-click="closeNewTopic()">取消</div>
+
+    <div class="inputBody_footer">
+      <span ng-class="100-newTopic.body.length<10 ? 'red':'ordinary'">
+        {{100-newTopic.body.length}}
+      </span>
+    </div>
+    
+    <!-- <div ng-class="canSubmit ? 'addTopicButton':'prepareForAddTopicButton'" ng-click="createTopic(newTopic)"  ng-disabled="button1disabled" ></div> -->
+    <div ng-disabled="!canSubmit || isSubmitting" class="newAddTopicButton" ng-click="createTopic(newTopic)">发布</div>
+  </ion-header-bar>
+
+  <!-- Modal Content Area -->
+  <ion-content>
+    <div class="list myList">
+      <label class="item myItem">
+        <textarea rows="4" class="inputBody" minlength=1 maxlength=120 required  placeholder="在想什么呢" ng-model="newTopic.body" ng-change="updateIfCanSubmit(newTopic)">
+        </textarea>
+      </label>
+    </div>
+
+    <div class="photoArea">
+      <div class="thumbnail">
+        <img ng-src="{{previewURL}}">
+      </div>
+      <div class="info">
+        <div class="photoSize">照片大小: {{photoSize}}</div>
+        <div class="photoPlace">
+          <i class="pin"></i>
+          {{myLocationName}}
+        </div>
+      </div>
+    </div>
+ 
+    
+
+  </ion-content>
+
+</ion-modal-view>

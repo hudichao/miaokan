@@ -1,0 +1,63 @@
+<ion-view hide-back-button="true" view-title="Intro" id="intro-page">
+  
+
+  <ion-slide-box on-slide-changed="slideChanged($index)">
+    <ion-slide>
+
+      <div>
+        <img class="fullscreen-image-background" ng-src="{{'intro/'+image[0]}}" />
+
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div>
+        <img class="fullscreen-image-background" ng-src="{{'intro/'+image[1]}}" />
+      </div>
+
+    </ion-slide>
+
+    <ion-slide>
+      <div>
+        <img class="fullscreen-image-background" ng-src="{{'intro/'+image[2]}}" />
+      </div>
+
+    </ion-slide>
+
+    <ion-slide>
+      <div>
+        <img class="fullscreen-image-background" ng-src="{{'intro/'+image[3]}}" />
+      </div>
+
+    </ion-slide>
+
+    <ion-slide id="intro5">
+        <div>
+          <img class="fullscreen-image-background" ng-src="{{'intro/'+image[4]}}" />
+        </div>
+
+        
+        <button class="aLittleDown2 button introButton" ng-if="version ==='4' || version ==='4s'"id="introButton" ng-click="startApp()"></button>
+
+
+        <div class="aLotDown2 contentText" ng-if="version==='4' || version==='4s'">
+          打开定位进入喵看即视为您同意我们的
+          <span class="user_privacy" ng-click="showModal()">
+          服务规约</span>以及<span class="user_privacy" ng-click="showModal2()">隐私条款</span>.
+        </div>
+
+
+        <button class="aLittleDown button introButton" ng-if="version==='5s' || version ==='6' || version ==='6+'"id="introButton" ng-click="startApp()"></button>
+
+
+        <div class="aLotDown contentText" ng-if="version==='5s' || version==='6' || version ==='6+' ">
+          打开定位进入喵看
+          <br>
+          即视为您同意我们的
+          <span class="user_privacy" ng-click="showModal()">
+          服务规约</span>以及<span class="user_privacy" ng-click="showModal2()">隐私条款</span>.
+        </div>
+    </ion-slide>
+  </ion-slide-box>
+
+</ion-view>

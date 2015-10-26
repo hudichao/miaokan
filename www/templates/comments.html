@@ -1,0 +1,74 @@
+<ion-view has-footer id="comments_page">
+  <ion-nav-bar class="bar-light nav-title-slide-ios7">
+    <ion-nav-back-button class="button-clear button-stable gray-button">
+      <i class="icon ion-ios-arrow-back"></i>&nbsp返回
+    </ion-nav-back-button>
+
+    <ion-nav-buttons side="right">
+           <button class="button button-clear button-stable gray-button" ng-click="jubao()">
+               举报
+           </button>
+       </ion-nav-buttons>
+  </ion-nav-bar>
+
+
+  <ion-content>
+    <div class="photoCardsArea">
+        <ks-swiper-container
+        initial-slide="initialSlide"  
+        speed="2000" 
+        loop="false" 
+        show-nav-buttons="false" 
+        slides-per-view="1.16" 
+        space-between="12" 
+        pagination-clickable="false" 
+        override-parameters="{centeredSlides: 'true'}"
+        on-ready="onReadySwiper(swiper)"
+
+        >
+            <ks-swiper-slide class="swiper-slide mySwiper" ng-repeat="topic in topics" >
+                <div class="photoCard" style="width:100%">
+                  <div class="photo">
+                    <img ng-src="{{topic.local_pic_url}}" width="100%">
+                  </div>
+
+                  <div class="photoInfo">
+                    <div class="photoText">{{topic.body}}</div>
+
+                    <span class="topic_time">{{topic.show_time}}</span>
+                    <span ng-if="true" class="comment_number">{{topic.commentNumber}}</span>
+                    <span class="topic_place">{{topic.locationName}}</span>
+                    </div>
+                </div>
+            </ks-swiper-slide>            
+        </ks-swiper-container>
+    </div>
+
+    <div bind-once ng-repeat="comment in comments[activeTopic]" class="comment_area" >
+      <div class="comment" >
+         {{comment.body}}
+      </div>
+    </div>
+
+
+
+
+
+  </ion-content>
+  <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+      <label class="item-input-wrapper comment_input">
+          <textarea class="animate-textarea" ng-model="inputData.comment" placeholder="┏ (　゜ω゜)=☞" required minlength="1" maxlength="100" msd-elastic></textarea>
+      </label>
+      <div class="footer-btn-wrap">
+
+        <div class="huifu"ng-disabled="!inputData.comment || inputData.comment === '' ||inputData.comment.length>100" ng-click="createComment()">回复</div>
+        <!-- <div ng-class="(!inputData.comment || inputData.comment === '' ||inputData.comment.length>120)? 'submitCommentBtn2': 'submitCommentBtn'" ng-disabled="!inputData.comment || inputData.comment === '' ||inputData.comment.length>120" ng-click="createComment()"></div> -->
+        <!-- <button ng-class="(!inputData.comment || inputData.comment === '')? 'submitCommentBtn': 'submitCommentBtn2'"  type="submit"
+            ng-disabled="!inputData.comment || inputData.comment === ''"> -->
+        <!-- <button class="button button-icon icon ion-android-send footer-btn" type="submit"
+            ng-disabled="!inputData.comment || inputData.comment === ''"> -->
+        </button>
+      </div>
+  </ion-footer-bar>
+
+</ion-view>

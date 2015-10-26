@@ -1,0 +1,62 @@
+<ion-view hide-back-button="true" has-footer title="<span class='miaokanTitle'>喵看</span>"id="topics_page">
+  <ion-nav-bar class="bar-light nav-title-slide-ios7">
+    <ion-nav-back-button class="button-clear button-stable">
+      <i class="icon ion-ios-arrow-back"></i>&nbsp返回
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+
+  <div class="addTopicIcon"  ng-click="takePhoto()"></div>
+
+  <ion-content class="topic_back">
+
+      <ion-refresher
+        on-refresh="doRefresh()"
+        spinner="bubbles"
+        >
+      </ion-refresher>
+
+      <div class="noTopic" ng-if="noTopicNear">
+          此处还没有喵看，我来悄悄发一张
+      </div>
+      <div class="noTopic" ng-if="isLoading && topics.length === 0">
+          努力读取中...
+      </div>
+
+      <div class="photoCardsArea" 
+      collection-repeat="topic in topics track by topic.id"
+      collection-item-height="208"
+      collection-item-width="98%"
+      >
+      <!-- <div class="photoCardsArea" ng-repeat="s in items"> -->
+        <div onclick="void(0)" class="photoCard" style="width:100%" ng-click="goToTopicPage(topic, $index)">
+          <div class="photo" width="100%">
+            <img ng-src="{{topic.local_pic_url}}" width="100%">
+          </div>
+
+          <div class="photoInfo">
+            <div class="photoText">{{topic.body}}</div>
+
+            <span class="topic_time">{{topic.show_time}}</span>
+            <span ng-if="true" class="comment_number">{{topic.commentNumber}}</span>
+            <span class="topic_place">{{topic.locationName}}</span>
+          </div>
+        </div>
+
+      </div>
+
+<!--         <ion-infinite-scroll
+          on-infinite="loadMore()"
+          distance="15%"
+          ng-if="!noMoreItemsAvailable"
+        </ion-infinite-scroll>
+ -->
+        <div class="noTopic" ng-if="noMoreItemsAvailable && topics.length > 0 && deviceReady">
+            已经最后一张啦
+        </div>
+      
+
+
+  </ion-content>
+
+</ion-view>
