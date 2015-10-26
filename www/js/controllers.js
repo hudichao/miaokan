@@ -277,7 +277,7 @@ angular.module('starter.controllers', [])
   };
 
   function getTopics() {
-    return Topics.getTopics($rootScope.myLocation)
+    return Topics.getTopicsSpecial($rootScope.myLocation)
     .then(function(data) {
       if (data.length === 0) {
         $scope.noTopicNear = true;
