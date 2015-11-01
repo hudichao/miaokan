@@ -1,4 +1,4 @@
-<ion-view hide-back-button="true" has-footer title="<span class='miaokanTitle'>喵看</span>"id="topics_page">
+<ion-view hide-back-button="true" has-footer title="<span class='miaokanTitle'>喵看Admin</span>"id="topics_page">
   <ion-nav-bar class="bar-light nav-title-slide-ios7">
     <ion-nav-back-button class="button-clear button-stable">
       <i class="icon ion-ios-arrow-back"></i>&nbsp返回
@@ -16,6 +16,9 @@
         >
       </ion-refresher>
 
+      注册用户数:    {{userNumber}}
+<!--       <a href="#/app/sub"><button class="button button-royal">定点发布</button></a> -->
+      
       <div class="noTopic" ng-if="noTopicNear">
           此处还没有喵看，我来悄悄发一张
       </div>

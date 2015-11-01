@@ -225,7 +225,61 @@ angular.module('starter.controllers', [])
     });
   };
 }])
-.controller('TopicsCtrl', ['$scope', '$rootScope','$timeout', 'Photo', 'Geolocation', '$q', 'Utils', '$ionicPopup','$ionicModal', 'Topics','$state','TopicCacheFactory', '$ionicLoading', function ($scope, $rootScope, $timeout, Photo, Geolocation, $q, Utils, $ionicPopup, $ionicModal, Topics, $state, TopicCacheFactory, $ionicLoading) {
+.controller('SubCtrl', ['$scope', function ($scope) {
+  "https://developer.mozilla.org/ja/docs/DOM/Using_the_Camera_API";
+
+  $scope.uploadPic = function(event) {
+
+    var files = event.target.files;
+    var file;
+
+    console.log(files);
+
+    if (files && files.length > 0) {
+      
+      file = files[0];
+
+      try {
+        //get window.URL
+        var url = window.URL || window.webkitURL;
+
+
+        //create ObjectURL
+        var imgURL = URL.createObjectURL(file);
+
+        console.log(imgURL);
+
+        $scope.previewPic = imgURL;
+
+        $scope.$apply();
+
+        //revoke ObjectURL
+        URL.revokeObjectURL(imgURL);
+      }
+      catch(e) {
+        try {
+          //if createObjectURL is not supported, use FileReader()
+          var fileReader = new FileReader();
+          fileReader.onload = function(event) {
+            $scope.previewPic = event.target.result;
+          }
+          fileReader.readAsDataURL(file);
+        }
+        catch (e) {
+          $scope.error = "Neither createObjectURL or FileReader are supported";
+        }
+      }
+    }
+  };
+
+}])
+.controller('TopicsCtrl', ['$scope', '$rootScope','$timeout', 'Photo', 'Geolocation', '$q', 'Utils', '$ionicPopup','$ionicModal', 'Topics','$state','TopicCacheFactory', '$ionicLoading', 'Users', 
+  function ($scope, $rootScope, $timeout, Photo, Geolocation, $q, Utils, $ionicPopup, $ionicModal, Topics, $state, TopicCacheFactory, $ionicLoading, Users) {
+  
+  Users.numbers()
+  .then(function(res) {
+    $scope.userNumber = res.data;
+  });
   //---for show page starts
   var onShowToast = function(event, data) {
     var position = data.position;

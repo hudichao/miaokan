@@ -1,9 +1,10 @@
 angular.module('starter.directives', [])
-.directive('adjustPhoto', [function () {
+.directive('customOnChange', [function () {
   return {
     restrict: 'A',
-    link: function (scope, iElement, iAttrs) {
-      
+    link: function (scope, element, attrs) {
+      var onChangeHandler = scope.$eval(attrs.customOnChange);
+      element.bind('change', onChangeHandler);
     }
   };
 }]);

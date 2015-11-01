@@ -1,6 +1,17 @@
-<ion-view has-footer>
+<ion-view>
+  <ion-nav-bar class="bar-light nav-title-slide-ios7">
+    <ion-nav-back-button class="button-clear button-stable">
+      <i class="icon ion-ios-arrow-back"></i>&nbsp返回
+    </ion-nav-back-button>
+  </ion-nav-bar>
 
-  {{data|json}}
-  <a href="#/app/topics">
-  topics</a>
+  <ion-content>
+    <input type="file" accept="image/*" custom-on-change="uploadPic">
+    <span ng-if="error">{{error}}</span>
+    <br>
+    <img ng-src="previewPic">
+    <input type="text" ng-if="previewPic">
+
+  </ion-content>
+
 </ion-view>
