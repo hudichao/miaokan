@@ -10,6 +10,7 @@ angular.module('starter.controllers', [])
       User.create(data);
     });
 
+    //试试git 分支
 
     $rootScope.checkNewVersion();
 
