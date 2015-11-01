@@ -72,7 +72,7 @@ angular.module('starter', ['ionic', 'ksSwiper', 'pasvaz.bindonce', 'monospaced.e
   var Browser = function() {
     return {
       getUser: function() {
-        $rootScope.user_id = 'debug-test'; 
+        $rootScope.user_id = 'debug-admin'; 
         return $q.when($rootScope.user_id);
       },
       getLocation: function() {

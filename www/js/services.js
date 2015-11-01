@@ -406,4 +406,19 @@ angular.module('starter.services', [])
       });
     },
   };
+}])
+.factory('Users', ['SERVER_URL', function (SERVER_URL) {
+  
+
+  return {
+    numbers: function() {
+      return $.ajax({
+        url: SERVER_URL + '/user/queryUsersCount',
+        data: {
+         
+        }
+      });
+    }
+
+  };
 }]);
