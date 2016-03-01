@@ -33,6 +33,14 @@
 
 //cordova plugin add cordova-plugin-x-toast
 
+//为了从照片拿照片 not used now
+//cordova plugin add https://github.com/wymsee/cordova-imagePicker.git
+
+//use below instead 这个有更快的速度，但它读不了icloud的图（硬伤）以及我不知道怎么语言本地化
+//最硬伤是不能build --release
+//cordova plugin add https://github.com/pawee/snw-cordova-imagePicker.git
+
+
 angular.module('starter', ['ionic', 'ksSwiper', 'pasvaz.bindonce', 'monospaced.elastic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.directives', 'ngIOS9UIWebViewPatch'])
 
 .constant('SERVER_URL', 'http://115.29.195.14:8080/')
@@ -79,6 +87,9 @@ angular.module('starter', ['ionic', 'ksSwiper', 'pasvaz.bindonce', 'monospaced.e
         $rootScope.myLocation = {lat:30.24083417420134, lng:120.0290236902183};
         return $q.when({lat:30.24083417420134, lng: 120.0290236902183});    
       },
+      openFolder: function() {
+        return $q.when({photoSize: "未知", previewURL: "./img/1.jpg"});
+      },
       openCamera: function() {
         return $q.when({photoSize: "未知", previewURL: "./img/1.jpg"});
       },
@@ -91,7 +102,8 @@ angular.module('starter', ['ionic', 'ksSwiper', 'pasvaz.bindonce', 'monospaced.e
     return {
       getUser: function() {
         //$rootScope.user_id = device.uuid;; 
-        $rootScope.user_id = ionic.Platform.isWebView() ? device.uuid : 'debug-test'; 
+        //$rootScope.user_id = ionic.Platform.isWebView() ? device.uuid : 'debug-test'; 
+        $rootScope.user_id = 'debug-test'; 
         return $q.when($rootScope.user_id);
       },
       getLocation: function() {
@@ -135,6 +147,27 @@ angular.module('starter', ['ionic', 'ksSwiper', 'pasvaz.bindonce', 'monospaced.e
               d.resolve({photoSize: photoSize, previewURL: fileURI});
             });
           });
+        }, function(err) {
+          d.reject(err);
+        });
+
+        return d.promise;
+      },
+      openFolder: function() {
+        var d = $q.defer();
+
+        Photo.takeFromFolder()
+        .then(function(fileURI) {
+          //get file size 
+          window.resolveLocalFileSystemURL(fileURI, function(fileEntry) {
+            fileEntry.file(function(fileObj) {
+              var photoSize = (fileObj.size / 1000).toFixed(2) + 'kb';
+              d.resolve({photoSize: photoSize, previewURL: fileURI});
+            });
+          });
+        }, function(err) {
+          console.log(err);
+          d.reject(err);
         });
 
         return d.promise;
@@ -186,6 +219,7 @@ angular.module('starter', ['ionic', 'ksSwiper', 'pasvaz.bindonce', 'monospaced.e
   $rootScope.getUser = Action().getUser;
   $rootScope.getLocation = Action().getLocation;
   $rootScope.openCamera = Action().openCamera;
+  $rootScope.openFolder = Action().openFolder;
   $rootScope.getLocationNameOnce = App().getLocationNameOnce;
   $rootScope.savePhoto = Action().savePhoto;
 
@@ -215,7 +249,7 @@ angular.module('starter', ['ionic', 'ksSwiper', 'pasvaz.bindonce', 'monospaced.e
   };
 
   $rootScope.checkNewVersion = function() {
-    if (window.localStorage.version2_didTutorial === 'true') {
+    if (window.localStorage.version3_didTutorial === 'true') {
 
 
       window.localStorage.version = 3;
@@ -288,6 +322,7 @@ angular.module('starter', ['ionic', 'ksSwiper', 'pasvaz.bindonce', 'monospaced.e
   $ionicConfigProvider.tabs.position("bottom");
 
   $ionicConfigProvider.navBar.alignTitle("center");
+  $ionicConfigProvider.navBar.positionPrimaryButtons("left");
   //for ios
   $ionicConfigProvider.views.swipeBackEnabled(false);
 
@@ -349,7 +384,7 @@ angular.module('starter', ['ionic', 'ksSwiper', 'pasvaz.bindonce', 'monospaced.e
     }
   });
 
-  if (window.localStorage.version2_didTutorial === 'true') {
+  if (window.localStorage.version3_didTutorial === 'true') {
     //$urlRouterProvider.otherwise('/tutorial'); 
     $urlRouterProvider.otherwise('/app/topics');
   }else{

@@ -1,19 +1,38 @@
 <ion-view hide-back-button="true" view-title="Intro" id="intro-page">
   
 
-  <ion-slide-box on-slide-changed="slideChanged($index)">
+  <ion-slide-box show-pager="false"  on-slide-changed="slideChanged($index)">
     <ion-slide>
 
       <div>
         <img class="fullscreen-image-background" ng-src="{{'intro/'+image[0]}}" />
 
       </div>
+
+      <div class="size4" ng-if="version==='4' || version==='4s'">
+        <div class="yifa" ng-click="next()"></div>
+      </div>
+
+      <div class="size5" ng-if="version!=='4' && version!=='4s'">
+        <div class="yifa" ng-click="next()"></div>
+      </div>
+
+
     </ion-slide>
 
     <ion-slide>
       <div>
         <img class="fullscreen-image-background" ng-src="{{'intro/'+image[1]}}" />
       </div>
+
+      <div class="size4" ng-if="version==='4' || version==='4s'">
+        <div class="yifa" ng-click="next()"></div>
+      </div>
+
+      <div class="size5" ng-if="version!=='4' && version!=='4s'">
+        <div class="yifa" ng-click="next()"></div>
+      </div>
+
 
     </ion-slide>
 
@@ -22,41 +41,34 @@
         <img class="fullscreen-image-background" ng-src="{{'intro/'+image[2]}}" />
       </div>
 
-    </ion-slide>
+      <div class="size4" ng-if="version==='4' || version==='4s'">
+        <div class="yifa" ng-click="next()"></div>
+      </div>
 
-    <ion-slide>
-      <div>
-        <img class="fullscreen-image-background" ng-src="{{'intro/'+image[3]}}" />
+      <div class="size5" ng-if="version!=='4' && version!=='4s'">
+        <div class="yifa" ng-click="next()"></div>
       </div>
 
     </ion-slide>
 
-    <ion-slide id="intro5">
+    <ion-slide id="intro4">
         <div>
-          <img class="fullscreen-image-background" ng-src="{{'intro/'+image[4]}}" />
-        </div>
-
-        
-        <button class="aLittleDown2 button introButton" ng-if="version ==='4' || version ==='4s'"id="introButton" ng-click="startApp()"></button>
-
-
-        <div class="aLotDown2 contentText" ng-if="version==='4' || version==='4s'">
-          打开定位进入喵看即视为您同意我们的
-          <span class="user_privacy" ng-click="showModal()">
-          服务规约</span>以及<span class="user_privacy" ng-click="showModal2()">隐私条款</span>.
+          <img class="fullscreen-image-background" ng-src="{{'intro/'+image[3]}}" />
         </div>
 
 
-        <button class="aLittleDown button introButton" ng-if="version==='5s' || version ==='6' || version ==='6+'"id="introButton" ng-click="startApp()"></button>
-
-
-        <div class="aLotDown contentText" ng-if="version==='5s' || version==='6' || version ==='6+' ">
-          打开定位进入喵看
-          <br>
-          即视为您同意我们的
-          <span class="user_privacy" ng-click="showModal()">
-          服务规约</span>以及<span class="user_privacy" ng-click="showModal2()">隐私条款</span>.
+        <div class="size4" ng-if="version==='4' || version==='4s'">
+          <div class="start" ng-click="startApp()"></div>
+          <div class="guiyue" ng-click="showModal()"></div>
+          <div class="yinsi" ng-click="showModal2()"></div>
         </div>
+
+        <div class="size5" ng-if="version!=='4' && version!=='4s'">
+          <div class="start" ng-click="startApp()"></div>
+          <div class="guiyue" ng-click="showModal()"></div>
+          <div class="yinsi" ng-click="showModal2()"></div>
+        </div>
+
     </ion-slide>
   </ion-slide-box>
 

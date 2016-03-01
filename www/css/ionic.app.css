@@ -2978,30 +2978,6 @@ a.subdued {
   .action-sheet-open .action-sheet-backdrop {
     pointer-events: auto; }
 
-.platform-android .action-sheet-backdrop.active {
-  background-color: rgba(0, 0, 0, 0.2); }
-.platform-android .action-sheet {
-  margin: 0; }
-  .platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button {
-    text-align: left;
-    border-color: transparent;
-    font-size: 16px;
-    color: inherit; }
-  .platform-android .action-sheet .action-sheet-title {
-    font-size: 14px;
-    padding: 16px;
-    color: #666; }
-  .platform-android .action-sheet .button.active, .platform-android .action-sheet .button.activated {
-    background: #e8e8e8; }
-.platform-android .action-sheet-group {
-  margin: 0;
-  border-radius: 0;
-  background-color: #fafafa; }
-.platform-android .action-sheet-cancel {
-  display: none; }
-.platform-android .action-sheet-has-icons .button {
-  padding-left: 56px; }
-
 .backdrop {
   position: fixed;
   top: 0;
@@ -7717,7 +7693,7 @@ a.button {
 .gray-button {
   color: #4A4A4A !important; }
 
-.button.action-sheet-option {
+.button.action-sheet-option .myGrey {
   color: #4A4A4A !important; }
 
 .popup {
@@ -7745,14 +7721,14 @@ a.button {
   background-color: rgba(255, 255, 255, 0.85); }
 #topics_page .addTopicIcon {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  bottom: 13px;
+  width: 50px;
+  height: 50px;
+  bottom: 18px;
   left: 50%;
-  margin-left: -40px;
+  margin-left: -25px;
   z-index: 100;
   background-image: url("../icon/camera.png");
-  background-size: 80px 80px;
+  background-size: 50px 50px;
   background-repeat: no-repeat; }
 #topics_page .topic_back {
   background: #F2F2F2;
@@ -8223,3 +8199,73 @@ a.button {
     height: 100%;
     width: 100%;
     object-fit: fill; }
+  #intro-page .size4, #intro-page .size5 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%; }
+  #intro-page .size4 .start {
+    position: fixed;
+    top: 76%;
+    left: 50%;
+    width: 200px;
+    height: 40px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  #intro-page .size4 .guiyue {
+    position: fixed;
+    top: 85%;
+    left: 54%;
+    width: 45px;
+    height: 15px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  #intro-page .size4 .yinsi {
+    position: fixed;
+    top: 85%;
+    left: 72%;
+    width: 45px;
+    height: 15px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  #intro-page .size4 .yifa {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  #intro-page .size5 .start {
+    position: fixed;
+    top: 72%;
+    left: 50%;
+    width: 200px;
+    height: 40px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  #intro-page .size5 .guiyue {
+    position: fixed;
+    top: 79%;
+    left: 54%;
+    width: 45px;
+    height: 20px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  #intro-page .size5 .yinsi {
+    position: fixed;
+    top: 79%;
+    left: 72%;
+    width: 45px;
+    height: 20px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  #intro-page .size5 .yifa {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }

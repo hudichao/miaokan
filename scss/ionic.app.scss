@@ -94,9 +94,14 @@ $fill-gray: #4A4A4A;
 .gray-button {
   color: $font-gray!important;
 }
+
 .button.action-sheet-option {
-  color: $font-gray!important;
+  .myGrey {
+    
+    color: $font-gray!important;
+  }
 }
+
 .popup {
   color: $font-gray!important;
 }
@@ -131,14 +136,14 @@ $fill-gray: #4A4A4A;
   }
   .addTopicIcon{
     position:absolute;
-    width:80px;
-    height:80px;
-    bottom:13px;
+    width:50px;
+    height:50px;
+    bottom:18px;
     left: 50%;
-    margin-left: -40px;
+    margin-left: -25px;
     z-index:100;
     background-image:url("../icon/camera.png");
-    background-size:80px 80px;
+    background-size:50px 50px;
     background-repeat:no-repeat;
   }
   .topic_back {
@@ -689,6 +694,90 @@ $fill-gray: #4A4A4A;
     height: 100%;
     width: 100%;
     object-fit: fill;
+  }
+
+  .size4, .size5 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+  .size4 {
+    .start {
+      position:fixed;
+      top:76%;
+      left:50%;
+      width: 200px;
+      height: 40px;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    .guiyue {
+      position:fixed;
+      top:85%;
+      left:54%;
+      width: 45px;
+      height: 15px;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    .yinsi {
+      position:fixed;
+      top:85%;
+      left:72%;
+      width: 45px;
+      height: 15px;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    .yifa {
+      position:fixed;
+      top:90%;
+      left:50%;
+      width: 80px;
+      height: 80px;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+  }
+  .size5 {
+    .start {
+      position:fixed;
+      top:72%;
+      left:50%;
+      width: 200px;
+      height: 40px;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    .guiyue {
+      position:fixed;
+      top:79%;
+      left:54%;
+      width: 45px;
+      height: 20px;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    .yinsi {
+      position:fixed;
+      top:79%;
+      left:72%;
+      width: 45px;
+      height: 20px;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    .yifa {
+      position:fixed;
+      top:90%;
+      left:50%;
+      width: 80px;
+      height: 80px;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
   }
   /*for intro page end*/
 

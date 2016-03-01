@@ -185,7 +185,7 @@ angular.module('starter.controllers', [])
 
     var actionSheet1 = $ionicActionSheet.show({
       buttons:[
-        {text:'举报'}
+        {text:'<span class="myGrey">举报</span>'}
       ],
       buttonClicked:function(index) {
         if (index === 0) {
@@ -195,7 +195,8 @@ angular.module('starter.controllers', [])
             cancelText: '取消',
             okText: '确定',
             okType: 'myHokokuAndDeleteBtn',
-            cancelType: 'myCancelBtn'
+            cancelType: 'myCancelBtn',
+            cssClass: "myActionSheet"
           });
           reportPopup.then(function(res){
             if(res){
@@ -225,13 +226,43 @@ angular.module('starter.controllers', [])
     });
   };
 }])
-.controller('TopicsCtrl', ['$scope', '$rootScope','$timeout', 'Photo', 'Geolocation', '$q', 'Utils', '$ionicPopup','$ionicModal', 'Topics','$state','TopicCacheFactory', '$ionicLoading', function ($scope, $rootScope, $timeout, Photo, Geolocation, $q, Utils, $ionicPopup, $ionicModal, Topics, $state, TopicCacheFactory, $ionicLoading) {
+.controller('TopicsCtrl', ['$scope', '$rootScope','$timeout', 'Photo', 'Geolocation', '$q', 'Utils', '$ionicPopup','$ionicModal', 'Topics','$state','TopicCacheFactory', '$ionicLoading', '$ionicActionSheet', function ($scope, $rootScope, $timeout, Photo, Geolocation, $q, Utils, $ionicPopup, $ionicModal, Topics, $state, TopicCacheFactory, $ionicLoading, $ionicActionSheet) {
   //---for show page starts
+
+  //showImageUploadChocies
+  $scope.showImageUploadChocies = function() {
+    var sheet = $ionicActionSheet.show({
+      buttons: [
+      {
+        text: '<b>拍照</b> 上传',
+      }, 
+      {
+        text: '从 <b>相册</b> 中选'
+      }],
+      titleText: '图片上传',
+      cancelText: '取消',
+      cancel: function() {
+
+      },
+      buttonClicked: function(index) {
+        if (index === 0) {
+          $scope.takePhoto('capture');
+          return true;
+        } else if (index === 1) {
+          $scope.takePhoto('folder');
+          return true;
+        }
+      }
+    });
+  };
+
+  //toast
   var onShowToast = function(event, data) {
     var position = data.position;
     var msg = data.msg;
     var duration = data.duration;
 
+    var time = data.error ? 1000 : 0;
     var timeout = $timeout(function() {
 
       window.plugins.toast.showWithOptions(
@@ -243,7 +274,7 @@ angular.module('starter.controllers', [])
         });
 
       $timeout.cancel(timeout);
-    });
+    }, time);
   };
 
   $scope.$on("showToast",onShowToast);
@@ -327,7 +358,7 @@ angular.module('starter.controllers', [])
       });
     }, function(err) {
 
-      $scope.$emit("showToast", {msg:err, position: "top", duration: "short"});
+      $scope.$emit("showToast", {msg:err, position: "center", duration: "short"});
       //不再用ionic
       // var popUp = $ionicPopup.alert({
       //   //template: '使用喵看需要打开地理定位<br><br>前往「设置」→「隐私」→「定位服务」，打开喵看。',
@@ -403,9 +434,15 @@ angular.module('starter.controllers', [])
 
   //拍照按钮
 
-  $scope.takePhoto = function() {
-
-    $rootScope.openCamera()
+  $scope.takePhoto = function(source) {
+    var take;
+    if (source === 'capture') {
+      take = $rootScope.openCamera;
+    } else if (source === 'folder') {
+      take = $rootScope.openFolder;
+    }
+    
+    take()
     .then(function(obj) {
       $scope.previewURL = obj.previewURL;
       $scope.photoSize = obj.photoSize;
@@ -423,6 +460,9 @@ angular.module('starter.controllers', [])
       }, 400);
     }, function(err) {
       console.log(err);
+      if (err.type === 'show') {
+        $scope.$emit("showToast", {msg:err.msg, error: true, position: "center", duration: "short"});
+      }
     });
   };
 
@@ -555,7 +595,7 @@ angular.module('starter.controllers', [])
 
 
   $scope.startApp = function(){
-    window.localStorage.version2_didTutorial = 'true';
+    window.localStorage.version3_didTutorial = 'true';
     $rootScope.didTutorial = true;
     $state.go('app.topics');
   };
@@ -582,8 +622,8 @@ angular.module('starter.controllers', [])
       $scope.version = '5s';
     }
     // $scope.version='6+';
-    var tmp1 = ['4page1.jpg', '4page2.jpg', '4page3.jpg', '4page4.jpg', '4page5.jpg'];
-    var tmp2 = ['6+page1.jpg', '6+page2.jpg', '6+page3.jpg', '6+page4.jpg', '6+page5.jpg'];
+    var tmp1 = ['4s1.jpg', '4s2.jpg', '4s3.jpg', '4s4.jpg'];
+    var tmp2 = ['intro1.jpg', 'intro2.jpg', 'intro3.jpg', 'intro4.jpg'];
 
     // $scope.images = {
     //   '4': ['4sintro1.png', '4sintro2.png', '4sintro3.png', '4sintro4.png', '4sintro5.png'],

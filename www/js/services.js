@@ -7,6 +7,37 @@ angular.module('starter.services', [])
   //when get photo url doGetAction
   //order: 1) checkKeyMap -> 2) (YES?) readLocalFile (NO?) download -> updateKeyMap -> back to 2)
   var returnObj = {
+    takeFromFolder: function() {
+      // var options = {
+      //   maximumImagesCount: 1,
+      //   width: 800,
+      //   height: 800,
+      //   quality: 80,
+      // };
+      // var d = $q.defer();
+      // $cordovaImagePicker.getPictures(options)
+      // .then(function(results) {
+      //   d.resolve(results[0]);
+      // }, function(err) {
+      //   d.reject({type:"show",msg:"读取相册信息失败"});
+      // });
+      // return d.promise;
+      var options = {
+        quality: 70,
+        //destinationType: Camera.DestinationType.DATA_URL,
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        //sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+        allowEdit: false,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 600,
+        targetHeight: 600,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false,
+        correctOrientation:true
+      };
+      return $cordovaCamera.getPicture(options);
+    },
     take: function() {
       var options = {
         quality: 75,
